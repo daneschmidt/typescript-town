@@ -1,5 +1,5 @@
 export class Town {
-    constructor(){}
+    constructor(){
+        console.log("Welcome to TypeScript Town!");
+    }
 }
-
-export class Citizen
