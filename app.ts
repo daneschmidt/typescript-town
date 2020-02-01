@@ -1,9 +1,9 @@
 import express = require('express');
-import { Company } from "./server/modules/Company"
+import { Town } from "./server/modules/Town"
 
 const app: express.Application = express();
 
-const company = new Company();
+const town = new Town();
 
 app.get('/', (req: express.Request, res: express.Response) => {
     res.send('Hello World');
