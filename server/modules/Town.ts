@@ -57,11 +57,11 @@ export class Town {
             case 7:
             case 8:
                 this.changeActivity(true);
+                this.changeGoal(true);
                 break;
             case 1:
             case 3:
                 this.createCitizen();
-                this.changeGoal(true);
                 break;
             case 9:
                 this.removeCitizen(true);

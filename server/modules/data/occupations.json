@@ -1,15 +1,20 @@
 {
     "occupations": [
-        "Doctor",
-        "Lawyer",
-        "Programmer",
-        "Cheifs Player",
-        "Fire Fighter",
-        "Police Officer",
-        "Fast Food Worker",
+        "doctor",
+        "lawyer",
+        "programmer",
+        "Cheifs player",
+        "fire fighter",
+        "police officer",
+        "fast food worker",
         "CEO",
-        "Photographer",
-        "Model",
-        "Garbage Man"
+        "photographer",
+        "model",
+        "garbage man",
+        "teacher",
+        "college professor",
+        "barber",
+        "florist",
+        "car salesman"
     ]
 }
