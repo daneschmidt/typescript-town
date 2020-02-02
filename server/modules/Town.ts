@@ -2,30 +2,40 @@ import { Citizen } from "./Citizen";
 import randomNumber from "./utils/randomNumber";
 import { HistoryLog } from "./utils/HistoryLog";
 
+class CitizenObjectIndex {
+    public citizen: Citizen;
+    public index: number;
 
+    constructor(citizen: Citizen, index: number) {
+        this.citizen = citizen;
+        this.index = index;
+    }
+}
 
 export class Town {
     private timer: Object = {};
     private timerCount: number;
     private citizens: Citizen[];
-    private timerNumber: number;
     private historyLog: HistoryLog = new HistoryLog();
+
+    private readonly NUM_OF_STARTING_CITIZENS: number = 500;
+    private readonly INTERVAL_TICK:number = 0.01 * 1000;
 
     constructor() {
         this.timerCount = 0;
         this.citizens = [];
-        this.timerNumber = randomNumber(500, 1500);
     }
 
     public init(): void {
-        console.log("Welcome to TypeScript Town!");
-        this.timer = setInterval(this.onTimerInterval.bind(this), this.timerNumber);
-        // .bind allows me to avoid maintain THIS in the scope correctly for the onTimerInterval - changes context
-        this.createCitizen();
-
-        while (this.citizens.length < 30) {
+        while (this.citizens.length < this.NUM_OF_STARTING_CITIZENS) {
             this.createCitizen();
         }
+
+        console.log("Welcome to TypeScript Town!");
+
+        this.timer = setInterval(
+            this.onTimerInterval.bind(this),
+            this.INTERVAL_TICK );
 
         console.log(this.historyLog.getLog());
     }
@@ -36,14 +46,47 @@ export class Town {
     }
 
     private randomEvent(): void {
-        //some random event happens here
+        const randomChance = randomNumber(1,100);
+
+        switch(randomChance) {
+            case 1 || 5 || 6 || 7:
+                // killed
+                this.removeCitizen(true);
+                break;
+            case 2 || 4 || 8 || 9 || 3 || 0:
+                this.createCitizen();
+                break;
+        }
     }
 
-    // FUNCTION BELOW CAN BE PASSED CITIZENS MANUALLY AS PARAMS //
+    private getRandomCitizen(): CitizenObjectIndex {
+        const randomNum = randomNumber(0, this.citizens.length - 1);
+        return new CitizenObjectIndex(this.citizens[randomNum], randomNum);
+    }
+        
+
+    private removeCitizen(killed?: boolean):void {
+        if(this.citizens.length <= 1) return;
+
+        const citizenObject: CitizenObjectIndex = this.getRandomCitizen();
+        const randomCitizen: Citizen = citizenObject.citizen;
+        const randomIndex: number = citizenObject.index;
+
+        if(killed) {
+            this.historyLog.killCitizen(randomCitizen);
+        }
+
+        this.citizens.splice(randomIndex, 1);
+    }
+
     private createCitizen(): Citizen {
         const newCitizen = new Citizen();
         this.citizens.push(newCitizen);
         this.historyLog.addNewCitizen(newCitizen);
         return newCitizen;
+    }
+
+    public getFullHistory(): string[] {
+        return this.historyLog.getLog();
     }
 }
