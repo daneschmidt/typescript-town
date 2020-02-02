@@ -10,12 +10,17 @@ export class HistoryLog {
     public addNewCitizen(citizen: Citizen): void {
         const salary = currencyFormatter.format(citizen.getAnnualSalary(), {code: 'USD'});
         const timestamp = moment().format('lll');
-        this.log.push(`${timestamp} - ${citizen.getFullName()}, Moved to town working as a ${citizen.getOccupation()} making ${salary}`)
+        this.log.push(`${timestamp} - ${citizen.getFullName()}, Moved to town working as a ${citizen.getOccupation()} making ${salary} and is currently ${citizen.getActivity()}`)
     }
 
     public killCitizen(citizen: Citizen): void {
         const timestamp = moment().format('lll');
         this.log.push(`${timestamp} - ${citizen.getFullName()}, was killed`) // add optional death type in here from json data
+    }
+
+    public citizenActivity(citizen: Citizen): void {
+        const timestamp = moment().format('lll');
+        this.log.push(`${timestamp} - ${citizen.getFullName()}, is ${citizen.getActivity()}`)
     }
 
     public showHistory(): void {

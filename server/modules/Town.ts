@@ -18,8 +18,8 @@ export class Town {
     private citizens: Citizen[];
     private historyLog: HistoryLog = new HistoryLog();
 
-    private readonly NUM_OF_STARTING_CITIZENS: number = 500;
-    private readonly INTERVAL_TICK:number = 0.01 * 1000;
+    private readonly NUM_OF_STARTING_CITIZENS: number = 5;
+    private readonly INTERVAL_TICK:number = .5 * 1000;
 
     constructor() {
         this.timerCount = 0;
@@ -43,19 +43,24 @@ export class Town {
     private onTimerInterval(): void {
         this.timerCount++;
         this.randomEvent();
+        console.log(this.timerCount);
+        console.log(this.citizens.length);
     }
 
     private randomEvent(): void {
-        const randomChance = randomNumber(1,100);
+        const randomChance = randomNumber(1,10);
 
         switch(randomChance) {
-            case 1 || 5 || 6 || 7:
+            case 2 || 4 || 6 || 8:
                 // killed
                 this.removeCitizen(true);
                 break;
-            case 2 || 4 || 8 || 9 || 3 || 0:
+            case 1:
                 this.createCitizen();
                 break;
+            // case 2 || 4 || 8 || 9 || 3 || 0:
+            //     ();
+            //     break;
         }
     }
 
