@@ -1,4 +1,5 @@
 import { Citizen } from "./Citizen";
+import { Occupation } from "../enums/Occupation";
 
 export class Town {
     private timer: Object = {};
@@ -12,17 +13,15 @@ export class Town {
 
     public init(): void {
         console.log("Welcome to TypeScript Town!");
-        // .bind allows me to avoid maintain THIS in the scope correctly for the onTimerInterval
+        // .bind allows me to avoid maintain THIS in the scope correctly for the onTimerInterval - changes context
         this.timer = setInterval(this.onTimerInterval.bind(this), 1000);
         this.createCitizen();
 
-        while(this.citizens.length < 10) {
+        while (this.citizens.length < 10) {
             this.createCitizen();
         }
 
         console.log(this.citizens);
-
-        
     }
 
     private onTimerInterval(): void {
@@ -36,10 +35,9 @@ export class Town {
         //some random event happens here
     }
 
-    private createCitizen():Citizen {
-        const newCitizen = new Citizen("dane", "schmidt", "engineer", 10000000, "hack the planet");
+    private createCitizen(): Citizen {
+        const newCitizen = new Citizen("dane", "schmidt", Occupation.PROGRAMMER , 10000000, "hack the planet");
         this.citizens.push(newCitizen);
         return newCitizen;
     }
-
 }
