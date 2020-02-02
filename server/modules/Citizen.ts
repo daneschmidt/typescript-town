@@ -1,4 +1,4 @@
-import { Occupation } from "../enums/Occupation";
+import { Occupation } from "./enums/Occupation";
 
 export class Citizen {
     private firstName: string;

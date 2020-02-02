@@ -1,5 +1,6 @@
 import { Citizen } from "./Citizen";
-import { Occupation } from "../enums/Occupation";
+import { Occupation } from "./enums/Occupation";
+import randomNumber from "./utils/randomNumber";
 
 export class Town {
     private timer: Object = {};
@@ -36,8 +37,19 @@ export class Town {
     }
 
     private createCitizen(): Citizen {
-        const newCitizen = new Citizen("dane", "schmidt", Occupation.PROGRAMMER , 10000000, "hack the planet");
+
+        const randoNum:number = randomNumber(0,10);
+
+
+        const newCitizen = new Citizen(
+            "dane", 
+            "schmidt", 
+            Occupation.PROGRAMMER , 
+            10000000, 
+            "hack the planet");
         this.citizens.push(newCitizen);
         return newCitizen;
     }
+
+    
 }
