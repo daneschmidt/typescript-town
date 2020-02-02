@@ -34,6 +34,11 @@ export class HistoryLog {
         this.log.push(`${timestamp} - ${citizen.getFullName()}, ${citizen.getAffliction()} and checked into Great Hope Hospital`)
     }
 
+    public getVacation(citizen: Citizen): void {
+        const timestamp = moment().format('lll');
+        this.log.push(`${timestamp} - ${citizen.getFullName()}, is traveling to ${citizen.getVacation()}`)  // later add for vacation .. for business.. for etc.
+    }
+
     public showHistory(): void {
         console.log(this.log);
     }

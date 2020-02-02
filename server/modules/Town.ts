@@ -48,11 +48,13 @@ export class Town {
     }
 
     private randomEvent(): void {
-        const randomChance = randomNumber(1, 25);
+        const randomChance = randomNumber(1, 100);
 
         switch (randomChance) {
             case 2:
             case 5:
+                this.getVacation(true);
+                break;
             case 6:
             case 7:
             case 8:
@@ -126,6 +128,17 @@ export class Town {
 
         if (sick) {
             this.historyLog.getAffliction(randomCitizen);
+        };
+    }
+
+    private getVacation(gone?: boolean): void {
+        if (this.citizens.length <= 1) return;
+
+        const citizenObject: CitizenObjectIndex = this.getRandomCitizen();
+        const randomCitizen: Citizen = citizenObject.citizen;
+
+        if (gone) {
+            this.historyLog.getVacation(randomCitizen);
         };
     }
 

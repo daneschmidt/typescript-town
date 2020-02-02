@@ -5,6 +5,7 @@ import * as activity from "./data/activity.json";
 import * as goal from "./data/goals.json";
 import * as deaths from "./data/killed.json";
 import * as afflictions from "./data/afflictions.json";
+import * as vacations from "./data/vacations.json";
 
 
 export class Citizen {
@@ -16,6 +17,7 @@ export class Citizen {
     private activity: string;
     private death: string;
     private affliction: string;
+    private vacation: string;
 
     constructor(
         firstName?: string,
@@ -26,6 +28,7 @@ export class Citizen {
         activity?: string,
         death?: string,
         affliction?: string,
+        vacation?: string,
     ) {
         this.firstName = firstName ? firstName : this.createFirstName();
         this.lastName = lastName ? lastName : this.createLastName();
@@ -35,6 +38,7 @@ export class Citizen {
         this.activity = activity ? activity : this.createActivity();
         this.death = death ? death : this.createDeath();
         this.affliction = affliction ? affliction : this.createAffliction();
+        this.vacation = vacation ? vacation : this.createVacation();
     }
 
     private createFirstName(): string {
@@ -63,6 +67,10 @@ export class Citizen {
 
     public createAffliction(): string {
         return afflictions.afflictions[randomNumber(0, afflictions.afflictions.length - 1)];
+    }
+
+    public createVacation(): string {
+        return vacations.vacations[randomNumber(0, vacations.vacations.length - 1)];
     }
 
     /// GETTERS AND SETTERS ///
@@ -117,6 +125,10 @@ export class Citizen {
 
     public getActivity(): string {
         return this.activity;
+    }
+
+    public getVacation(): string {
+        return this.vacation;
     }
 
     // public setActivity(activity: string): void {
