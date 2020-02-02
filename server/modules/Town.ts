@@ -1,5 +1,4 @@
 import { Citizen } from "./Citizen";
-import { Occupation } from "./enums/Occupation";
 import randomNumber from "./utils/randomNumber";
 import * as data from "./data/names.json";
 
@@ -20,7 +19,7 @@ export class Town {
         this.timer = setInterval(this.onTimerInterval.bind(this), 1000);
         this.createCitizen();
 
-        while (this.citizens.length < 10) {
+        while (this.citizens.length < 30) {
             this.createCitizen();
         }
 

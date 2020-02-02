@@ -1,24 +1,24 @@
-import { Occupation } from "./enums/Occupation";
 import randomNumber from "./utils/randomNumber";
 import * as data from "./data/names.json";
+import * as occupations from "./data/occupations.json";
 
 export class Citizen {
     private firstName: string;
     private lastName: string;
-    private occupation: Occupation;
+    private occupation: string;
     private annualSalary: number;
     private lifeGoal: string;
 
     constructor(
         firstName?: string, 
         lastName?: string, 
-        occupation?: Occupation, 
+        occupation?: string, 
         annualSalary?: number, 
         lifeGoal?: string,
         ) {
         this.firstName =  firstName ? firstName : this.createFirstName();
         this.lastName = lastName ? lastName : this.createLastName();
-        this.occupation = occupation ? occupation : Occupation.PROGRAMMER;
+        this.occupation = occupation ? occupation : this.createOccupation();
         this.lifeGoal = lifeGoal ? lifeGoal : "HACK THE PLANET";
         this.annualSalary =  annualSalary ? annualSalary : 32000;
     }
@@ -30,4 +30,9 @@ export class Citizen {
     private createLastName(): string {
         return data.last_names[randomNumber(0, data.last_names.length - 1)];
     }
+
+    public createOccupation(): string {
+        return occupations.occupations[randomNumber(0, occupations.occupations.length - 1)];
+    }
+
 }
