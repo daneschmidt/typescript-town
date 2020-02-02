@@ -1,6 +1,7 @@
 import randomNumber from "./utils/randomNumber";
 import * as data from "./data/names.json";
 import * as occupations from "./data/occupations.json";
+import * as activity from "./data/activity.json";
 
 export class Citizen {
     private firstName: string;
@@ -8,6 +9,7 @@ export class Citizen {
     private occupation: string;
     private annualSalary: number;
     private lifeGoal: string;
+    private activity: string;
 
     constructor(
         firstName?: string, 
@@ -15,12 +17,14 @@ export class Citizen {
         occupation?: string, 
         annualSalary?: number, 
         lifeGoal?: string,
+        activity?: string,
         ) {
         this.firstName =  firstName ? firstName : this.createFirstName();
         this.lastName = lastName ? lastName : this.createLastName();
         this.occupation = occupation ? occupation : this.createOccupation();
         this.lifeGoal = lifeGoal ? lifeGoal : "HACK THE PLANET";
-        this.annualSalary =  annualSalary ? annualSalary : 32000;
+        this.annualSalary =  annualSalary ? annualSalary : randomNumber(32000,550000);
+        this.activity = activity ? activity : this.createActivity();
     }
 
     private createFirstName(): string {
@@ -33,6 +37,10 @@ export class Citizen {
 
     public createOccupation(): string {
         return occupations.occupations[randomNumber(0, occupations.occupations.length - 1)];
+    }
+
+    public createActivity(): string {
+        return activity.activity[randomNumber(0, activity.activity.length -1)];
     }
 
 }
