@@ -24,6 +24,11 @@ export class HistoryLog {
         this.log.push(`${timestamp} - ${citizen.getFullName()}, is currently ${citizen.getActivity()}`)
     }
 
+    public citizenGoal(citizen: Citizen): void {
+        const timestamp = moment().format('lll');
+        this.log.push(`${timestamp} - ${citizen.getFullName()}, has decided to ${citizen.getLifeGoal()}`)
+    }
+
     public showHistory(): void {
         console.log(this.log);
     }

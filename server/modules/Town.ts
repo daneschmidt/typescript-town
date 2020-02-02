@@ -61,6 +61,7 @@ export class Town {
             case 1:
             case 3:
                 this.createCitizen();
+                this.changeGoal(true);
                 break;
             case 9:
                 this.removeCitizen(true);
@@ -95,6 +96,17 @@ export class Town {
 
         if (newActivity) {
             this.historyLog.citizenActivity(randomCitizen);
+        };
+    }
+
+    private changeGoal(newGoal?: boolean): void {
+        if (this.citizens.length <= 1) return;
+
+        const citizenObject: CitizenObjectIndex = this.getRandomCitizen();
+        const randomCitizen: Citizen = citizenObject.citizen;
+
+        if (newGoal) {
+            this.historyLog.citizenGoal(randomCitizen);
         };
     }
 
