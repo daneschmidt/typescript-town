@@ -19,7 +19,7 @@ export class Town {
     private historyLog: HistoryLog = new HistoryLog();
 
     private readonly NUM_OF_STARTING_CITIZENS: number = 5;
-    private readonly INTERVAL_TICK: number = .25 * 1000;
+    private readonly INTERVAL_TICK: number = .15 * 1000;
 
     constructor() {
         this.timerCount = 0;
@@ -43,31 +43,37 @@ export class Town {
     private onTimerInterval(): void {
         this.timerCount++;
         this.randomEvent();
-        console.log(this.timerCount);
-        console.log(this.citizens.length);
+        console.log("tick count", this.timerCount);
+        console.log("population", this.citizens.length);
     }
 
     private randomEvent(): void {
-        const randomChance = randomNumber(1, 100);
+        const randomChance = randomNumber(1, 9);
 
         switch (randomChance) {
+            case 1:
             case 2:
-            case 5:
                 this.getVacation(true);
                 break;
-            case 6:
-            case 7:
-            case 8:
-                this.changeActivity(true);
+            case 3:
+            case 4:
                 this.changeGoal(true);
                 break;
-            case 1:
-            case 3:
-                this.createCitizen();
+            case 5:
+                this.changeActivity(true);
+                break;
+            case 6:
                 this.getHurt(true);
                 break;
-            case 9:
+            case 7:
                 this.removeCitizen(true);
+                break;
+            case 8:
+            case 9:
+                this.createCitizen();
+                break;
+            case 0:
+                this.createCitizen();
                 break;
         }
     }

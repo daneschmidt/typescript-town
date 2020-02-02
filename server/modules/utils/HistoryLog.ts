@@ -9,7 +9,7 @@ export class HistoryLog {
     constructor() { }
 
     public addNewCitizen(citizen: Citizen): void {
-        const salary = currencyFormatter.format(citizen.getAnnualSalary(), {code: 'USD'});
+        const salary = currencyFormatter.format(citizen.getAnnualSalary(), { code: 'USD' });
         const timestamp = moment().format('lll');
         this.log.push(`${timestamp} - ${citizen.getFullName()}, Moved to town working as a ${citizen.getOccupation()} making ${salary} and is currently ${citizen.getActivity()}`)
     }
