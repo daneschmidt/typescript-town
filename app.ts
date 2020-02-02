@@ -7,7 +7,7 @@ const town = new Town();
 town.init();
 
 app.get('/', (req: express.Request, res: express.Response) => {
-    res.send('Hello World');
+    res.send('TypeScript Town is running');
 });
 
 app.get("/api/log", (req: express.Request, res: express.Response) => {
