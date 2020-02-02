@@ -19,7 +19,7 @@ export class Town {
     private historyLog: HistoryLog = new HistoryLog();
 
     private readonly NUM_OF_STARTING_CITIZENS: number = 5;
-    private readonly INTERVAL_TICK:number = .5 * 1000;
+    private readonly INTERVAL_TICK: number = .5 * 1000;
 
     constructor() {
         this.timerCount = 0;
@@ -35,7 +35,7 @@ export class Town {
 
         this.timer = setInterval(
             this.onTimerInterval.bind(this),
-            this.INTERVAL_TICK );
+            this.INTERVAL_TICK);
 
         console.log(this.historyLog.getLog());
     }
@@ -48,19 +48,19 @@ export class Town {
     }
 
     private randomEvent(): void {
-        const randomChance = randomNumber(1,10);
+        const randomChance = randomNumber(1, 10);
 
-        switch(randomChance) {
-            case 2 || 4 || 6 || 8:
-                // killed
-                this.removeCitizen(true);
-                break;
-            case 1:
+        switch (randomChance) {
+            case 2:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
                 this.createCitizen();
                 break;
-            // case 2 || 4 || 8 || 9 || 3 || 0:
-            //     ();
-            //     break;
+            case 1:
+                this.removeCitizen(true);
+                break;
         }
     }
 
@@ -68,16 +68,16 @@ export class Town {
         const randomNum = randomNumber(0, this.citizens.length - 1);
         return new CitizenObjectIndex(this.citizens[randomNum], randomNum);
     }
-        
 
-    private removeCitizen(killed?: boolean):void {
-        if(this.citizens.length <= 1) return;
+
+    private removeCitizen(killed?: boolean): void {
+        if (this.citizens.length <= 1) return;
 
         const citizenObject: CitizenObjectIndex = this.getRandomCitizen();
         const randomCitizen: Citizen = citizenObject.citizen;
         const randomIndex: number = citizenObject.index;
 
-        if(killed) {
+        if (killed) {
             this.historyLog.killCitizen(randomCitizen);
         }
 
