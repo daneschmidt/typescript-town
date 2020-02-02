@@ -1,6 +1,8 @@
 import { Citizen } from "./Citizen";
 import { Occupation } from "./enums/Occupation";
 import randomNumber from "./utils/randomNumber";
+import * as data from "./data/names.json";
+
 
 export class Town {
     private timer: Object = {};
@@ -37,13 +39,14 @@ export class Town {
     }
 
     private createCitizen(): Citizen {
+        const firstName: string = data.first_names[randomNumber(0, data.first_names.length - 1)];
+        const lastName: string = data.last_names[randomNumber(0, data.last_names.length - 1)];
 
-        const randoNum:number = randomNumber(0,10);
-
+        const randomNum:number = randomNumber(0,10);
 
         const newCitizen = new Citizen(
-            "dane", 
-            "schmidt", 
+            firstName, 
+            lastName, 
             Occupation.PROGRAMMER , 
             10000000, 
             "hack the planet");
