@@ -2,6 +2,7 @@ import { Citizen } from "../Citizen";
 import moment from 'moment';
 const currencyFormatter = require('currency-formatter');
 
+
 export class HistoryLog {
     private log: string[] = [];
 
@@ -15,7 +16,7 @@ export class HistoryLog {
 
     public killCitizen(citizen: Citizen): void {
         const timestamp = moment().format('lll');
-        this.log.push(`${timestamp} - ${citizen.getFullName()}, was killed`) // add optional death type in here from json data
+        this.log.push(`${timestamp} - ${citizen.getFullName()}, was killed ${citizen.createDeath()}`) // add optional death type in here from json data
     }
 
     public citizenActivity(citizen: Citizen): void {

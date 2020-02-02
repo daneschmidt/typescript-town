@@ -19,7 +19,7 @@ export class Town {
     private historyLog: HistoryLog = new HistoryLog();
 
     private readonly NUM_OF_STARTING_CITIZENS: number = 5;
-    private readonly INTERVAL_TICK: number = .5 * 1000;
+    private readonly INTERVAL_TICK: number = .25 * 1000;
 
     constructor() {
         this.timerCount = 0;
@@ -48,7 +48,7 @@ export class Town {
     }
 
     private randomEvent(): void {
-        const randomChance = randomNumber(1, 100);
+        const randomChance = randomNumber(1, 25);
 
         switch (randomChance) {
             case 2:
@@ -61,6 +61,7 @@ export class Town {
             case 1:
             case 3:
                 this.createCitizen();
+                break;
             case 9:
                 this.removeCitizen(true);
                 break;

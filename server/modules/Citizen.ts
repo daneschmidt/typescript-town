@@ -3,6 +3,8 @@ import * as data from "./data/names.json";
 import * as occupations from "./data/occupations.json";
 import * as activity from "./data/activity.json";
 import * as goal from "./data/goals.json";
+import * as deaths from "./data/killed.json";
+
 
 export class Citizen {
     private firstName: string;
@@ -11,6 +13,7 @@ export class Citizen {
     private annualSalary: number;
     private lifeGoal: string;
     private activity: string;
+    private death: string;
 
     constructor(
         firstName?: string,
@@ -19,6 +22,7 @@ export class Citizen {
         annualSalary?: number,
         lifeGoal?: string,
         activity?: string,
+        death?: string,
     ) {
         this.firstName = firstName ? firstName : this.createFirstName();
         this.lastName = lastName ? lastName : this.createLastName();
@@ -26,6 +30,7 @@ export class Citizen {
         this.lifeGoal = lifeGoal ? lifeGoal : this.createGoal();
         this.annualSalary = annualSalary ? annualSalary : randomNumber(32000, 550000);
         this.activity = activity ? activity : this.createActivity();
+        this.death = death ? death : this.createDeath();
     }
 
     private createFirstName(): string {
@@ -46,6 +51,10 @@ export class Citizen {
 
     public createGoal(): string {
         return goal.goals[randomNumber(0, goal.goals.length - 1)];
+    }
+
+    public createDeath(): string {
+        return deaths.deaths[randomNumber(0, deaths.deaths.length - 1)];
     }
 
     /// GETTERS AND SETTERS ///
