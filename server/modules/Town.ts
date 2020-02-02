@@ -38,21 +38,12 @@ export class Town {
         //some random event happens here
     }
 
+    // FUNCTION BELOW CAN BE PASSED CITIZENS MANUALLY AS PARAMS //
     private createCitizen(): Citizen {
-        const firstName: string = data.first_names[randomNumber(0, data.first_names.length - 1)];
-        const lastName: string = data.last_names[randomNumber(0, data.last_names.length - 1)];
+        const randomNum: number = randomNumber(0, 10);
 
-        const randomNum:number = randomNumber(0,10);
-
-        const newCitizen = new Citizen(
-            firstName, 
-            lastName, 
-            Occupation.PROGRAMMER , 
-            10000000, 
-            "hack the planet");
+        const newCitizen = new Citizen();
         this.citizens.push(newCitizen);
         return newCitizen;
     }
-
-    
 }
