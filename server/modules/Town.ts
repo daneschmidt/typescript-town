@@ -62,6 +62,7 @@ export class Town {
             case 1:
             case 3:
                 this.createCitizen();
+                this.getHurt(true);
                 break;
             case 9:
                 this.removeCitizen(true);
@@ -115,6 +116,17 @@ export class Town {
         this.citizens.push(newCitizen);
         this.historyLog.addNewCitizen(newCitizen);
         return newCitizen;
+    }
+
+    private getHurt(sick?: boolean): void {
+        if (this.citizens.length <= 1) return;
+
+        const citizenObject: CitizenObjectIndex = this.getRandomCitizen();
+        const randomCitizen: Citizen = citizenObject.citizen;
+
+        if (sick) {
+            this.historyLog.getAffliction(randomCitizen);
+        };
     }
 
     public getFullHistory(): string[] {

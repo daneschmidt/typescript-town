@@ -29,6 +29,11 @@ export class HistoryLog {
         this.log.push(`${timestamp} - ${citizen.getFullName()}, has decided to ${citizen.getLifeGoal()}`)
     }
 
+    public getAffliction(citizen: Citizen): void {
+        const timestamp = moment().format('lll');
+        this.log.push(`${timestamp} - ${citizen.getFullName()}, ${citizen.getAffliction()} and checked into Great Hope Hospital`)
+    }
+
     public showHistory(): void {
         console.log(this.log);
     }
