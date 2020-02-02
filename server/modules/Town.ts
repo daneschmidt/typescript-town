@@ -48,7 +48,7 @@ export class Town {
     }
 
     private randomEvent(): void {
-        const randomChance = randomNumber(1, 10);
+        const randomChance = randomNumber(1, 100);
 
         switch (randomChance) {
             case 2:
@@ -56,9 +56,12 @@ export class Town {
             case 6:
             case 7:
             case 8:
-                this.createCitizen();
+                this.changeActivity(true);
                 break;
             case 1:
+            case 3:
+                this.createCitizen();
+            case 9:
                 this.removeCitizen(true);
                 break;
         }
@@ -68,7 +71,6 @@ export class Town {
         const randomNum = randomNumber(0, this.citizens.length - 1);
         return new CitizenObjectIndex(this.citizens[randomNum], randomNum);
     }
-
 
     private removeCitizen(killed?: boolean): void {
         if (this.citizens.length <= 1) return;
@@ -84,6 +86,17 @@ export class Town {
         this.citizens.splice(randomIndex, 1);
     }
 
+    private changeActivity(newActivity?: boolean): void {
+        if (this.citizens.length <= 1) return;
+
+        const citizenObject: CitizenObjectIndex = this.getRandomCitizen();
+        const randomCitizen: Citizen = citizenObject.citizen;
+
+        if (newActivity) {
+            this.historyLog.citizenActivity(randomCitizen);
+        };
+    }
+
     private createCitizen(): Citizen {
         const newCitizen = new Citizen();
         this.citizens.push(newCitizen);
@@ -94,4 +107,5 @@ export class Town {
     public getFullHistory(): string[] {
         return this.historyLog.getLog();
     }
+
 }

@@ -20,7 +20,7 @@ export class HistoryLog {
 
     public citizenActivity(citizen: Citizen): void {
         const timestamp = moment().format('lll');
-        this.log.push(`${timestamp} - ${citizen.getFullName()}, is ${citizen.getActivity()}`)
+        this.log.push(`${timestamp} - ${citizen.getFullName()}, is currently ${citizen.getActivity()}`)
     }
 
     public showHistory(): void {
